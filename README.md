@@ -1,23 +1,40 @@
-# menuBot
+# Telegram Café Bot (aiogram v3)
 
-Simple Telegram bot skeleton for a restaurant menu.
+"Из коробки" Telegram-бот для кафе: Меню → Корзина → Доставка → Оплата (моки), Связаться. 
+Без БД, все данные в памяти. Готов для быстрого демо.
 
-## Setup
+## Запуск
+1. Python 3.11+
+2. `python -m venv .venv && source .venv/bin/activate`  (Windows: `.venv\\Scripts\\activate`)
+3. `pip install -r requirements.txt`
+4. Скопируйте `.env.example` в `.env` и вставьте токен бота
+5. `python run.py`
 
-1. Create a virtual environment and install dependencies:
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate
-   pip install python-telegram-bot~=20.0 python-dotenv
-   ```
+## Разделы
+- 🍽 Меню (категории: Первое блюдо / Второе блюдо / Компот) → карточки блюд → добавление в корзину
+- 🧺 Корзина (удаление, очистка, оформить доставку)
+- 🚚 Доставка (FSM: адрес → имя → телефон → подтверждение)
+- 💳 Оплата (мок: Наличными / Онлайн)
+- 📞 Связаться (контакты, “Написать администратору”)
 
-2. Create a `.env` file by copying `.env.example` and set your `TELEGRAM_BOT_TOKEN`:
-   ```bash
-   cp .env.example .env
-   # Edit .env and set TELEGRAM_BOT_TOKEN=your_token
-   ```
-
-3. Run the bot:
-   ```bash
-   python bot.py
-   ```
+## Структура
+```
+/app
+  __init__.py
+  config.py
+  logger.py
+  storage.py
+  /keyboards
+    __init__.py
+    reply.py
+    inline.py
+  /handlers
+    __init__.py
+    common.py
+    menu.py
+    cart.py
+    delivery.py
+    payment.py
+    contact.py
+run.py
+```
