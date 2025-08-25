@@ -18,7 +18,7 @@ async def main() -> None:
     setup_logging()
     settings = load_settings()
 
-    bot = Bot(token=settings.BOT_TOKEN, parse_mode=ParseMode.HTML)
+    bot = Bot(token=settings.BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
     dp = Dispatcher(storage=MemoryStorage())
 
     register_handlers(dp)
