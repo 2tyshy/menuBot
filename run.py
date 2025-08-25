@@ -7,7 +7,7 @@ import asyncio
 
 from app.config import load_settings
 from app.logger import setup_logging
-from app.handlers import register_handlers
+from app import handlers
 
 async def set_commands(bot: Bot) -> None:
     commands = [
@@ -22,7 +22,7 @@ async def main() -> None:
     bot = Bot(token=settings.BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
     dp = Dispatcher(storage=MemoryStorage())
 
-    register_handlers(dp)
+    handlers.register_handlers(dp)
     await set_commands(bot)
 
     try:
